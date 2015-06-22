@@ -18,7 +18,10 @@ struct Capture {
 	// MARK: - Initializers
 	
 	init?(dictionary: [NSObject: AnyObject]) {
-		guard let name = dictionary["name"] as? String else { return nil }
-		self.name = name
+    if let name = dictionary["name"] as? String {
+      self.name = name
+    } else {
+      return nil
+    }
 	}
 }

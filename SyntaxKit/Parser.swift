@@ -69,26 +69,32 @@ public class Parser {
 			}
 
 			// Begin & end
-			if let begin = pattern.begin, end = pattern.end {
-				guard let beginResults = parse(string, inRange: bounds, expression: begin, captures: pattern.beginCaptures),
-					beginRange = beginResults.range else { continue }
-
+			if let begin = pattern.begin,
+          end = pattern.end,
+          beginResults = parse(string, inRange: bounds, expression: begin, captures: pattern.beginCaptures),
+          beginRange = beginResults.range {
+				
 				let location = NSMaxRange(beginRange)
 				let endBounds = NSMakeRange(location, bounds.length - location - bounds.location)
 
-				guard let endResults = parse(string, inRange: endBounds, expression: end, captures: pattern.endCaptures),
-					endRange = endResults.range else { /* TODO: Rewind? */ continue }
+            
+        if let endResults = parse(string, inRange: endBounds, expression: end, captures: pattern.endCaptures),
+          endRange = endResults.range {
 
-				// Add whole scope before start and end
-				var results = ResultSet()
-				if let name = pattern.name {
-					results.addResult(Result(scope: name, range: NSUnionRange(beginRange, endRange)))
-				}
+          // Add whole scope before start and end
+          var results = ResultSet()
+          if let name = pattern.name {
+            results.addResult(Result(scope: name, range: NSUnionRange(beginRange, endRange)))
+          }
 
-				results.addResults(beginResults)
-				results.addResults(endResults)
+          results.addResults(beginResults)
+          results.addResults(endResults)
 
-				return applyResults(results, callback: callback)
+          return applyResults(results, callback: callback)
+        } else {
+          /* TODO: Rewind? */
+          continue
+            }
 			}
 		}
 
@@ -97,37 +103,31 @@ public class Parser {
 
 	/// Parse an expression with captures
 	private func parse(string: String, inRange bounds: NSRange, scope: String? = nil, expression expressionString: String, captures: CaptureCollection?) -> ResultSet? {
-		let matches: [NSTextCheckingResult]
-		do {
-			let expression = try NSRegularExpression(pattern: expressionString, options: [.AnchorsMatchLines])
-			matches = expression.matchesInString(string, options: [], range: bounds)
-		} catch {
-			return nil
-		}
+    
+    if  let expression =  NSRegularExpression(pattern: expressionString, options: .AnchorsMatchLines, error: nil),
+      result = expression.firstMatchInString(string, options: nil, range: bounds) {
+      var resultSet = ResultSet()
+      if let scope = scope where result.range.location != NSNotFound {
+        resultSet.addResult(Result(scope: scope, range: result.range))
+      }
 
-		guard let result = matches.first else { return nil }
+      if let captures = captures {
+        for index in captures.captureIndexes {
+          let range = result.rangeAtIndex(Int(index))
+          if range.location == NSNotFound {
+            continue
+          }
 
-		var resultSet = ResultSet()
-		if let scope = scope where result.range.location != NSNotFound {
-			resultSet.addResult(Result(scope: scope, range: result.range))
-		}
-
-		if let captures = captures {
-			for index in captures.captureIndexes {
-				let range = result.rangeAtIndex(Int(index))
-				if range.location == NSNotFound {
-					continue
-				}
-
-				if let scope = captures[index]?.name {
-					resultSet.addResult(Result(scope: scope, range: range))
-				}
-			}
-		}
-
-		if !resultSet.isEmpty {
-			return resultSet
-		}
+          if let scope = captures[index]?.name {
+            resultSet.addResult(Result(scope: scope, range: range))
+          }
+        }
+      }
+      
+      if !resultSet.isEmpty {
+        return resultSet
+      }
+    }
 
 		return nil
 	}
