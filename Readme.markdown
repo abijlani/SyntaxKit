@@ -9,7 +9,7 @@ SyntaxKit was abstracted from [Whiskey](http://usewhiskey.com).
 
 ## Building
 
-SyntaxKit is written in Swift 2 so Xcode 7 is required. There aren't any dependencies besides system frameworks.
+~~SyntaxKit is written in Swift 2 so Xcode 7 is required.~~ This fork is meant to work with Swift 1.2 and Xcode 6.3. There aren't any dependencies besides system frameworks.
 
 
 ## Installation
