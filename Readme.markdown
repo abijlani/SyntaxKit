@@ -1,4 +1,4 @@
-# SyntaxKit
+# SyntaxKit (for Swift 1.2)
 
 [![Version](https://img.shields.io/github/release/soffes/SyntaxKit.svg)](https://github.com/soffes/SyntaxKit/releases) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![CocoaPods compatible](https://img.shields.io/cocoapods/v/SyntaxKit.svg)](https://cocoapods.org/pods/SyntaxKit)
 
@@ -13,18 +13,6 @@ SyntaxKit was abstracted from [Whiskey](http://usewhiskey.com).
 
 
 ## Installation
-
-[Carthage](https://github.com/carthage/carthage) is the recommended way to install SyntaxKit. Add the following to your Cartfile:
-
-``` ruby
-github "soffes/SyntaxKit"
-```
-
-You can also install with [CocoaPods](https://cocoapods.org):
-
-``` ruby
-pod 'SyntaxKit'
-```
 
 For manual installation, I recommend adding the project as a subproject to your project or workspace and adding the appropriate framework as a target dependency.
 
