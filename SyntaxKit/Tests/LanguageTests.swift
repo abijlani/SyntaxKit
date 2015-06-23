@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import SyntaxKit
+import SyntaxKit
 
 class LanguageTests: XCTestCase {
 
@@ -29,6 +29,8 @@ class LanguageTests: XCTestCase {
 
 		let pattern = yaml.patterns[3]
 		XCTAssertEqual("string.unquoted.yaml", pattern.name!)
-		XCTAssertEqual("punctuation.definition.entry.yaml", pattern.captures![1]!.name)
+    if let captures = pattern.captures {
+      XCTAssertEqual("punctuation.definition.entry.yaml", captures.captureAtIndex(1)!.name)
+    }
 	}
 }

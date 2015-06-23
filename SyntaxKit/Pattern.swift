@@ -8,13 +8,13 @@
 
 import Foundation
 
-final class Pattern {
+public final class Pattern {
 
 	// MARK: - Properties
 
-	let name: String?
+	public let name: String?
+  public let captures: CaptureCollection?
 	let match: String?
-	let captures: CaptureCollection?
 	let begin: String?
 	let beginCaptures: CaptureCollection?
 	let end: String?

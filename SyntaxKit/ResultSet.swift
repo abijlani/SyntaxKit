@@ -26,16 +26,16 @@ struct ResultSet {
 
 	// MARK: - Adding
 
-	mutating func addResult(result: Result) {
-		_results.append(result)
-
-		guard let range = range else {
-			self.range = result.range
-			return
-		}
-
-		self.range = NSUnionRange(range, result.range)
-	}
+  mutating func addResult(result: Result) {
+    _results.append(result)
+    
+    if let range = range {
+      self.range = NSUnionRange(range, result.range)
+    } else {
+      self.range = result.range
+    }
+    
+  }
 
 	mutating func addResults(resultSet: ResultSet) {
 		for result in resultSet.results {
