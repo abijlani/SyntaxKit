@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "211989A61B2EC3B600F0D786"
-               BuildableName = "SyntaxKit-iOS.framework"
+               BuildableName = "SyntaxKit.framework"
                BlueprintName = "SyntaxKit-iOS"
                ReferencedContainer = "container:SyntaxKit.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "211989A61B2EC3B600F0D786"
-            BuildableName = "SyntaxKit-iOS.framework"
+            BuildableName = "SyntaxKit.framework"
             BlueprintName = "SyntaxKit-iOS"
             ReferencedContainer = "container:SyntaxKit.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "211989A61B2EC3B600F0D786"
-            BuildableName = "SyntaxKit-iOS.framework"
+            BuildableName = "SyntaxKit.framework"
             BlueprintName = "SyntaxKit-iOS"
             ReferencedContainer = "container:SyntaxKit.xcodeproj">
          </BuildableReference>
@@ -84,7 +84,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "211989A61B2EC3B600F0D786"
-            BuildableName = "SyntaxKit-iOS.framework"
+            BuildableName = "SyntaxKit.framework"
             BlueprintName = "SyntaxKit-iOS"
             ReferencedContainer = "container:SyntaxKit.xcodeproj">
          </BuildableReference>
