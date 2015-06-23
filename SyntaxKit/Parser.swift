@@ -118,7 +118,7 @@ public class Parser {
             continue
           }
 
-          if let scope = captures[index]?.name {
+          if let scope = captures.captureAtIndex(index)?.name {
             resultSet.addResult(Result(scope: scope, range: range))
           }
         }

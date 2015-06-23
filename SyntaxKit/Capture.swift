@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Capture {
+public struct Capture {
 
 	// MARK: - Properties
 
-	let name: String
+	public let name: String
 
 
 	// MARK: - Initializers
