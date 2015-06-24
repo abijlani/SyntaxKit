@@ -75,7 +75,7 @@ public class Parser {
           beginRange = beginResults.range {
 				
 				let location = NSMaxRange(beginRange)
-				let endBounds = NSMakeRange(location, bounds.length - location - bounds.location)
+        let endBounds = NSMakeRange(location, max(bounds.length - location - bounds.location,1))
 
             
         if let endResults = parse(string, inRange: endBounds, expression: end, captures: pattern.endCaptures),
